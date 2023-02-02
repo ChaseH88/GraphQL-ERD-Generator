@@ -6,7 +6,8 @@
   "scripts": {
     "build:client": "webpack --config webpack.config.client.js",
     "build:server": "webpack --config webpack.config.server.js",
-    "start": "node ./dist/server.js"
+    "start": "node ./dist/server.js",
+    "dev": "node dev.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "@typescript-eslint/parser": "^5.50.0",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
+    "cross-spawn": "^7.0.3",
     "eslint": "^8.33.0",
     "eslint-plugin-react": "^7.32.2",
     "ts-loader": "^9.4.2",
