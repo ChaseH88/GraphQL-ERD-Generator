@@ -1,7 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-export const App: React.FC = () => <p>Hello from Client</p>;
+// Components
+import { Form } from "./components/Form";
+
+export const App: React.FC = () => (
+  <>
+    <Form />
+  </>
+);
 
 if (typeof document !== "undefined") {
   ReactDOM.render(<App />, document.getElementById("root"));

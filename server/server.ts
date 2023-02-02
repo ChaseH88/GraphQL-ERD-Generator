@@ -6,6 +6,7 @@ import ReactDOMServer from "react-dom/server";
 import { App } from "../client/client";
 
 const server = express();
+const port = 3001;
 
 server.set("view engine", "ejs");
 server.set("views", path.join(__dirname, "views"));
@@ -23,6 +24,6 @@ server.get("/", (req, res) => {
   res.render("client", { assets, component });
 });
 
-server.listen(3001, () => {
-  console.log("Server is running on port 3001");
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
