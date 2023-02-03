@@ -35,12 +35,20 @@ const { TextArea } = Input;
 
 const Form = () => {
   const [schema, setSchema] = useState(graphqlSchema);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
-    const { data } = await api.post("/post-schema", {
-      schema,
-    });
-    console.log(data);
+    try {
+      setLoading(true);
+      const { data } = await api.post("/post-schema", {
+        schema,
+      });
+      window.location.href = `/schema.png`;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -59,13 +67,13 @@ const Form = () => {
         rules={[{ required: true, message: "Please input your schema!" }]}
       >
         <TextArea
-          rows={4}
+          rows={24}
           value={schema}
           onChange={(e) => setSchema(e.target.value)}
         />
       </AntForm.Item>
       <AntForm.Item wrapperCol={{ offset: 1, span: 16 }}>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading={loading}>
           Submit
         </Button>
       </AntForm.Item>

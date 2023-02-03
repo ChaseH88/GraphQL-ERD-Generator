@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { App } from "../client/client";
+import { handleBrowser } from "./scripts/browser";
 
 const server = express();
 server.use(bodyParser.json());
@@ -27,8 +28,10 @@ server.get("/", (req, res) => {
 });
 
 // create a route that accepts json
-server.post("/post-schema", (req, res) => {
-  console.log("req.body", req.body);
+server.post("/post-schema", async (req, res) => {
+  let filepath = await handleBrowser(req.body);
+  console.log(path.join(__dirname, `static/${filepath}`));
+  res.status(200).sendFile(path.join(__dirname, `static/${filepath}`));
 });
 
 server.listen(port, () => {
