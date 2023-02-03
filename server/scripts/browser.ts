@@ -36,7 +36,7 @@ const handleBrowser = async (input: any) => {
   await page.waitForSelector(submitButton);
   await page.click(submitButton);
 
-  const svg = ".viewport svg";
+  const svg = ".viewport svg > g";
   await page.waitForSelector(svg);
 
   // set a timeout to allow the svg to render
