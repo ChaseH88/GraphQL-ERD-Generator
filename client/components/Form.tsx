@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Input, Button, Form as AntForm } from "antd";
-import { api } from "../utils/axios";
+import { postSchema } from "../utils/axios";
 
 const graphqlSchema = `
   type Query {
@@ -40,10 +40,8 @@ const Form = () => {
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      const { data } = await api.post("/post-schema", {
-        schema,
-      });
-      window.location.href = `/schema.png`;
+      const data = await postSchema(schema);
+      console.log(data);
     } catch (error) {
       console.log(error);
     } finally {
